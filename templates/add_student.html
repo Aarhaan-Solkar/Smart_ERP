@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}Add New Student{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <h2>Add New Student</h2>
+        <p>Fill in the details below to create a new student profile.</p>
+        <form action="{{ url_for('add_student') }}" method="post" class="grid-form">
+            <!-- Basic Info -->
+            <div class="form-group"><label for="full_name">Full Name</label><input type="text" id="full_name" name="full_name" required></div>
+            <div class="form-group"><label for="username">Username</label><input type="text" id="username" name="username" required></div>
+            <div class="form-group"><label for="password">Password</label><input type="password" id="password" name="password" required></div>
+            
+            <!-- Dropdowns for Year and Department -->
+            <div class="form-group">
+                <label for="year">Current Year</label>
+                <select id="year" name="year" required>
+                    {% for year in years %}
+                        <option value="{{ year }}">{{ year }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="department">Department</label>
+                <select id="department" name="department" required>
+                    {% for dept in departments %}
+                        <option value="{{ dept }}">{{ dept }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <!-- KT Info -->
+            <div class="form-group"><label for="kts_y1_ext">1st Year External KTs</label><input type="number" id="kts_y1_ext" name="kts_y1_ext" value="0" required min="0"></div>
+            <div class="form-group"><label for="kts_y1_int">1st Year Internal KTs</label><input type="number" id="kts_y1_int" name="kts_y1_int" value="0" required min="0"></div>
+            <div class="form-group"><label for="kts_y2_ext">2nd Year External KTs</label><input type="number" id="kts_y2_ext" name="kts_y2_ext" value="0" required min="0"></div>
+            <div class="form-group"><label for="kts_y2_int">2nd Year Internal KTs</label><input type="number" id="kts_y2_int" name="kts_y2_int" value="0" required min="0"></div>
+            <div class="form-group"><label for="kts_y3_ext">3rd Year External KTs</label><input type="number" id="kts_y3_ext" name="kts_y3_ext" value="0" required min="0"></div>
+            <div class="form-group"><label for="kts_y3_int">3rd Year Internal KTs</label><input type="number" id="kts_y3_int" name="kts_y3_int" value="0" required min="0"></div>
+
+            <div class="form-group full-width">
+                <button type="submit" class="btn btn-primary">Add Student</button>
+                <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

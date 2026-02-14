@@ -1,0 +1,232 @@
+{% extends "layout.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h2>Welcome, Admin!</h2>
+    <p>Review analytics and search for student records.</p>
+</div>
+
+<!-- Section for Overall Charts -->
+<div class="card">
+    <h3>Overall Analytics</h3>
+    <div class="charts-container">
+        <div class="chart-wrapper">
+            <h4>Overall Eligibility Status</h4>
+            <canvas id="overallEligibilityChart"></canvas>
+        </div>
+        <div class="chart-wrapper">
+            <h4>Students by Department</h4>
+            <canvas id="departmentDistChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Section for Per-Department Charts -->
+<div class="card">
+    <h3>Department-wise Eligibility</h3>
+    <div class="charts-container department-charts">
+        {% for department, data in department_eligibility_data.items() %}
+            <div class="chart-wrapper">
+                <h4>{{ department }}</h4>
+                <canvas id="chart-{{ department|replace(' ', '-') }}"></canvas>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<!-- Section for Student Search -->
+<div class="card">
+    <h3>Search for a Student</h3>
+    <form method="get" action="{{ url_for('admin_dashboard') }}" class="search-form">
+        <input type="search" name="search" placeholder="Enter student name..." value="{{ search_query or '' }}" class="search-input">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {% if search_query %}
+        <div class="search-results-container">
+            <h4>Search Results for "{{ search_query }}"</h4>
+            {% if search_results %}
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Full Name</th><th>Department</th><th>Current Year</th>
+                                <th>1st Yr KTs (Ext/Int)</th><th>2nd Yr KTs (Ext/Int)</th>
+                                <th>3rd Yr KTs (Ext/Int)</th><th>Eligibility Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for result in search_results %}
+                            <tr>
+                                <td>{{ result.student.full_name }}</td>
+                                <td>{{ result.student.department }}</td>
+                                <td>{{ result.student.year }}</td>
+                                <td>{{ result.student.kts_y1_ext }} / {{ result.student.kts_y1_int }}</td>
+                                <td>{{ result.student.kts_y2_ext }} / {{ result.student.kts_y2_int }}</td>
+                                <td>{{ result.student.kts_y3_ext }} / {{ result.student.kts_y3_int }}</td>
+                                <td class="{% if 'Not Eligible' in result.status %}result-ineligible{% else %}result-eligible{% endif %}">
+                                    <strong>{{ result.status }}</strong>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <p>No students found matching your search.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Data from Flask (safe conversion)
+    const overallLabels = {{ overall_eligibility_labels|tojson|safe }};
+    const overallData = {{ overall_eligibility_data|tojson|safe }};
+    const deptDistLabels = {{ department_dist_labels|tojson|safe }};
+    const deptDistData = {{ department_dist_data|tojson|safe }};
+    const deptEligibilityData = {{ department_eligibility_data|tojson|safe }};
+
+    // Smart ERP Color Theme
+    const chartColors = {
+        primary: '#3B82F6',   // ERP Blue
+        secondary: '#1E40AF', // Deep Blue
+        accent: '#60A5FA',    // Light Blue
+        success: '#10B981',   // Green for eligible
+        danger: '#EF4444',    // Red for not eligible
+        neutral: '#E5E7EB'    // Light Gray
+    };
+
+    // Global Chart Defaults
+    Chart.defaults.font.family = 'Poppins, sans-serif';
+    Chart.defaults.color = '#1E293B';
+    Chart.defaults.plugins.legend.labels.boxWidth = 15;
+    Chart.defaults.plugins.legend.labels.usePointStyle = true;
+
+    // 1. Overall Eligibility Pie/Donut Chart
+new Chart(document.getElementById('overallEligibilityChart').getContext('2d'), {
+    type: 'doughnut', // modern look
+    data: {
+        labels: overallLabels,
+        datasets: [{
+            data: overallData,
+            backgroundColor: ['#3B82F6', '#F59E0B'], // blue + amber
+            borderColor: '#fff',
+            borderWidth: 2,
+            hoverOffset: 8
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'top',
+                labels: {
+                    color: '#2c3e50',
+                    font: { size: 14 }
+                }
+            },
+            title: {
+                display: true,
+                font: { size: 18, weight: 'bold' },
+                color: '#2c3e50',
+                padding: { bottom: 20 }
+            }
+        },
+        cutout: '70%' // creates a sleek donut chart
+    }
+});
+
+    // 2️⃣ Department Distribution Bar Chart
+    const deptCtx = document.getElementById('departmentDistChart').getContext('2d');
+    const gradient = deptCtx.createLinearGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, 'rgba(59,130,246,0.9)');
+    gradient.addColorStop(1, 'rgba(59,130,246,0.2)');
+
+    new Chart(deptCtx, {
+        type: 'bar',
+        data: {
+            labels: deptDistLabels,
+            datasets: [{
+                label: 'Number of Students',
+                data: deptDistData,
+                backgroundColor: ['#3B82F6'],
+                borderColor: chartColors.primary,
+                borderWidth: 1,
+                borderRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: 'rgba(0,0,0,0.05)' },
+                    ticks: { stepSize: 1, color: chartColors.secondary }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { color: chartColors.secondary }
+                }
+            },
+            plugins: {
+                legend: { display: true },
+                tooltip: {
+                    backgroundColor: chartColors.secondary,
+                    titleFont: { size: 14 },
+                    bodyFont: { size: 13 },
+                    cornerRadius: 8
+                }
+            }
+        }
+    });
+
+    // 3️⃣ Per-Department Eligibility Pie Charts
+    for (const [department, data] of Object.entries(deptEligibilityData)) {
+        const canvasId = `chart-${department.replace(/ /g, '-')}`;
+        const ctx = document.getElementById(canvasId);
+        if (ctx) {
+            new Chart(ctx.getContext('2d'), {
+                type: 'doughnut',
+                data: {
+                    labels: ['Eligible', 'Not Eligible'],
+                    datasets: [{
+                        data: [data.Eligible, data['Not Eligible']],
+                        backgroundColor: ['#3B82F6', '#F59E0B'],
+                        borderColor: '#fff',
+                        borderWidth: 2,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '65%',
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: { color: chartColors.secondary, font: { size: 13 } }
+                        },
+                        tooltip: {
+                            backgroundColor: chartColors.secondary,
+                            titleFont: { size: 13 },
+                            bodyFont: { size: 12 }
+                        }
+                    }
+                }
+            });
+        }
+    }
+});
+</script>
+{% endblock %}

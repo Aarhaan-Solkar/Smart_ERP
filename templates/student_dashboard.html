@@ -1,0 +1,157 @@
+{% extends "layout.html" %}
+
+{% block title %}Student Dashboard{% endblock %}
+
+{% block content %}
+<div class="student-dashboard-container">
+    <h2 class="dashboard-title">Student Dashboard</h2>
+
+    <!-- Student Profile Section -->
+    <div class="profile-section">
+        <img src="https://i.pravatar.cc/150?u={{ student_data.username }}" alt="Profile Picture" class="profile-pic">
+        <div class="profile-details">
+            <h3>{{ student_data.full_name if student_data else 'Student Name' }}</h3>
+            <p>Roll Number: {{ student_data.username if student_data else 'N/A' }}</p>
+            <p>Department: {{ student_data.department if student_data else 'N/A' }}</p>
+            <p>Year: {{ student_data.year if student_data else 'N/A' }}</p>
+        </div>
+    </div>
+
+    <!-- Key Statistics Section -->
+    <h3 class="section-title">Key Statistics</h3>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h4>Attendance Percentage</h4>
+            <p class="stat-value">92%</p>
+        </div>
+        <div class="stat-card">
+            <h4>GPA</h4>
+            <p class="stat-value">8.5</p>
+        </div>
+        <div class="stat-card">
+            <h4>Number of KTs</h4>
+            <p class="stat-value">{{ total_kts }}</p>
+        </div>
+        <div class="stat-card">
+            <h4>Eligibility Status</h4>
+            <p class="stat-value {{ 'eligible' if 'Eligible' in eligibility_status else 'ineligible' }}">
+                {{ eligibility_status }}
+            </p>    
+            {% if eligibility_status == 'Eligible' %}
+                {% set next_year = None %}
+                {% if student_data.year == 'First Year' %}{% set next_year = 'Second Year' %}
+                {% elif student_data.year == 'Second Year' %}{% set next_year = 'Third Year' %}
+                {% elif student_data.year == 'Third Year' %}{% set next_year = 'Final Year' %}
+                {% elif student_data.year == 'Final Year' %}{% set next_year = 'Graduation 🎓' %}{% endif %}
+                {% if next_year %}
+                    <p class="next-year">You are promoted to <strong>{{ next_year }}</strong> 🚀</p>
+                {% endif %}
+            {% else %}
+                <p class="next-year">You cannot proceed to the next year until you clear KTs ❌</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Payment Button -->
+    <div class="payment-section">
+        <a href="https://pages.razorpay.com/pl_FpvQTKKTduggCT/view" class="payment-btn">Pay Fees Now</a>
+    </div>
+
+    <!-- Progress Tracking Section -->
+    <h3 class="section-title">Progress Tracking</h3>
+    <div class="progress-grid">
+        <div class="chart-card">
+            <h4>Your Attendance Trend</h4>
+            <canvas id="attendanceChart"></canvas>
+        </div>
+        <div class="chart-card">
+            <h4>GPA Over Time</h4>
+            <canvas id="gpaChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+let attendanceChart;
+
+// Fetch attendance.json and filter only the logged-in student
+fetch('attendance.json')
+  .then(response => response.json())
+  .then(data => {
+    const fullName = "{{ student_data.full_name }}";  // Jinja injects logged-in student's name
+    const student = data.find(s => s.Name === fullName);
+
+    if (student) {
+        updateAttendanceChart(student);
+    } else {
+        console.error("No matching student found in JSON for:", fullName);
+    }
+  });
+
+
+// Function to draw chart for that student only
+function updateAttendanceChart(student) {
+    const labels = ['Day1', 'Day2', 'Day3', 'Day4', 'Day5'];
+    const attendanceValues = [
+        student.Day1, student.Day2, student.Day3, student.Day4, student.Day5
+    ];
+
+    const ctx = document.getElementById('attendanceChart').getContext('2d');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: student.Name + ' Attendance',
+                data: attendanceValues,
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                tension: 0.3
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 1,
+                    ticks: { stepSize: 1 }
+                }
+            }
+        }
+    });
+}
+
+// GPA Chart (from backend-provided data)
+document.addEventListener('DOMContentLoaded', function () {
+    const gpaData = JSON.parse('{{ gpa_data|safe }}');
+    const ctxGPA = document.getElementById('gpaChart').getContext('2d');
+
+    new Chart(ctxGPA, {
+        type: 'line',
+        data: {
+            labels: gpaData.labels,
+            datasets: [{
+                label: 'GPA',
+                data: gpaData.data,
+                fill: true,
+                backgroundColor: 'rgba(74, 105, 189, 0.1)',
+                borderColor: 'rgba(74, 105, 189, 1)',
+                tension: 0.4,
+                borderWidth: 3
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: { y: { display: false }, x: { grid: { display: false } } },
+            plugins: { legend: { display: false } }
+        }
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard | ERP System</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #198754;
+            --accent-color: #f39c12;
+            --bg-color: #f4f6f9;
+            --card-bg: #ffffff;
+            --text-dark: #212529;
+            --border-radius: 12px;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            font-family: "Poppins", sans-serif;
+            color: var(--text-dark);
+        }
+
+        /* Navbar */
+        .navbar {
+            background: var(--primary-color) !important;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Dashboard header */
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-header h1 {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        /* Card stats */
+        .stat-card {
+            border: none;
+            border-radius: var(--border-radius);
+            background-color: var(--card-bg);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        }
+
+        .stat-card .card-title {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .stat-card .card-text {
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        /* Charts */
+        .chart-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 45vh;
+    width: 100%;
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    margin: 0 auto; /* ensures it’s centered in column */
+}
+
+
+        /* Table */
+        .table-container {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        table thead {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* Search input */
+        .form-control {
+            border-radius: var(--border-radius);
+            box-shadow: none;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0, 86, 179, 0.25);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand ml-3" href="#">Faculty ERP Portal</a>
+        <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav mr-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5 mb-5">
+        <div class="dashboard-header">
+            <h1>{{ department }} Department Dashboard</h1>
+            <p class="lead">Faculty overview and student eligibility insights</p>
+        </div>
+
+        <div class="row text-center mb-5">
+            <div class="col-md-4 mb-3">
+                <div class="card stat-card border-primary">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Students</h5>
+                        <p class="card-text text-primary">{{ total_students }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card stat-card border-success">
+                    <div class="card-body">
+                        <h5 class="card-title">Eligible Students</h5>
+                        <p class="card-text text-success">{{ eligible_count }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card stat-card border-danger">
+                    <div class="card-body">
+                        <h5 class="card-title">Not Eligible Students</h5>
+                        <p class="card-text text-danger">{{ not_eligible_count }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <h4 class="text-center mb-3">Eligibility Status</h4>
+                <div class="chart-container">
+                    <canvas id="eligibilityChart"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <h4 class="text-center mb-3">Student Distribution by Year</h4>
+                <div class="chart-container">
+                    <canvas id="yearDistChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search -->
+        <hr class="my-5">
+        <h3 class="mb-3">Search Students</h3>
+        <input type="text" id="searchInput" class="form-control mb-4" placeholder="Type to search by name...">
+
+        <!-- Student Table -->
+        <div class="table-container">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>Username</th>
+                        <th>Year</th>
+                        <th>Eligibility Status</th>
+                    </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                    {% for result in all_department_students %}
+                    <tr>
+                        <td class="student-name">{{ result.student.full_name }}</td>
+                        <td>{{ result.student.username }}</td>
+                        <td>{{ result.student.year }}</td>
+                        <td>{{ result.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // ---- Chart.js Config ----
+        const eligibilityCtx = document.getElementById('eligibilityChart').getContext('2d');
+        const yearDistCtx = document.getElementById('yearDistChart').getContext('2d');
+
+        new Chart(eligibilityCtx, {
+            type: 'doughnut',
+            data: {
+                labels: {{ eligibility_labels|tojson }},
+                datasets: [{
+                    label: 'Eligibility',
+                    data: {{ eligibility_data|tojson }},
+                    backgroundColor: ['#3B82F6', '#F59E0B'],
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: { position: 'bottom' }
+                }
+                
+            }
+        });
+
+        new Chart(yearDistCtx, {
+            type: 'bar',
+            data: {
+                labels: {{ year_dist_labels|tojson }},
+                datasets: [{
+                    label: 'Students',
+                    data: {{ year_dist_data|tojson }},
+                    backgroundColor: ['#1e90ff'],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { precision: 0 }
+                    }
+                },
+                plugins: {
+                    legend: { display: true }
+                }
+            }
+        });
+
+        // ---- Search Functionality ----
+        const searchInput = document.getElementById('searchInput');
+        const tableRows = document.querySelectorAll('#studentTableBody tr');
+
+        searchInput.addEventListener('keyup', () => {
+            const filter = searchInput.value.toLowerCase();
+            tableRows.forEach(row => {
+                const name = row.querySelector('.student-name').textContent.toLowerCase();
+                row.style.display = name.includes(filter) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

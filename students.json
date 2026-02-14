@@ -1,0 +1,930 @@
+[
+  {
+    "full_name": "Aarav Sharma", "username": "aaravs", "year": "First Year", "department": "Computer Science",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Aditi Verma", "username": "aditiv", "year": "Second Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 3, "kts_y2_int": 1, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Advik Singh", "username": "adviks", "year": "Third Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 2, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Aisha Gupta", "username": "aishag", "year": "Final Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ananya Reddy", "username": "ananyar", "year": "First Year", "department": "Civil",
+    "kts_y1_ext": 3, "kts_y1_int": 2, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Arjun Kumar", "username": "arjunk", "year": "Second Year", "department": "Computer Science",
+    "kts_y1_ext": 1, "kts_y1_int": 1, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Arya Patel", "username": "aryap", "year": "Third Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Avani Mishra", "username": "avanim", "year": "Final Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ayaan Khan", "username": "ayaank", "year": "First Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Diya Choudhary", "username": "diyac", "year": "Second Year", "department": "Civil",
+    "kts_y1_ext": 2, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ishaan Joshi", "username": "ishaanj", "year": "Third Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ishika Mehra", "username": "ishikam", "year": "Final Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Kabir Yadav", "username": "kabiry", "year": "First Year", "department": "EXTC",
+    "kts_y1_ext": 4, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Kavya Thakur", "username": "kavyat", "year": "Second Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Krish Agarwal", "username": "krisha", "year": "Third Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 3, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Myra Jain", "username": "myraj", "year": "Final Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Neel Malhotra", "username": "neelm", "year": "First Year", "department": "Mechanical",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Nisha Shah", "username": "nishas", "year": "Second Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Parth Desai", "username": "parthd", "year": "Third Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Priya Nair", "username": "priyan", "year": "Final Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Rahul Bajaj", "username": "rahulb", "year": "First Year", "department": "Computer Science",
+    "kts_y1_ext": 2, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Rhea Kapoor", "username": "rheak", "year": "Second Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Rohan Bhatia", "username": "rohanb", "year": "Third Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 1, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Saanvi Iyer", "username": "saanvii", "year": "Final Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Samarth Rao", "username": "samarthr", "year": "First Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Sara Ali", "username": "saraa", "year": "Second Year", "department": "Computer Science",
+    "kts_y1_ext": 3, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Shaurya Sethi", "username": "shauryas", "year": "Third Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 1, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Siya Khanna", "username": "siyak", "year": "Final Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Soham Mehta", "username": "sohamm", "year": "First Year", "department": "IT",
+    "kts_y1_ext": 1, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Tara Menon", "username": "taram", "year": "Second Year", "department": "Civil",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 2, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Veer Singhania", "username": "veers", "year": "Third Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Vihaan Anand", "username": "vihaana", "year": "Final Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Yash Chopra", "username": "yashc", "year": "First Year", "department": "EXTC",
+    "kts_y1_ext": 5, "kts_y1_int": 2, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Zara Hussain", "username": "zarah", "year": "Second Year", "department": "IT",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Zoya Akhtar", "username": "zoyaa", "year": "Third Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Aarav Kumar", "username": "aaravk", "year": "Final Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Aditi Singh", "username": "aditis", "year": "First Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Advik Patel", "username": "advikp", "year": "Second Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Aisha Sharma", "username": "aishas", "year": "Third Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ananya Verma", "username": "ananyav", "year": "Final Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Arjun Gupta", "username": "arjung", "year": "First Year", "department": "Computer Science",
+    "kts_y1_ext": 2, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Arya Reddy", "username": "aryar", "year": "Second Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Avani Singh", "username": "avanis", "year": "Third Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ayaan Kumar", "username": "ayaanku", "year": "Final Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Diya Patel", "username": "diyap", "year": "First Year", "department": "Civil",
+    "kts_y1_ext": 3, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ishaan Mishra", "username": "ishaanm", "year": "Second Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ishika Khan", "username": "ishikak", "year": "Third Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 1, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Kabir Choudhary", "username": "kabirc", "year": "Final Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Kavya Joshi", "username": "kavyaj", "year": "First Year", "department": "IT",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Krish Mehra", "username": "krishm", "year": "Second Year", "department": "Civil",
+    "kts_y1_ext": 2, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Rohan Desai", "username": "rohand", "year": "First Year", "department": "Computer Science",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Priya Mehta", "username": "priyam", "year": "Second Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 3, "kts_y2_int": 1, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Vikram Shah", "username": "vikrams", "year": "Third Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 2, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Sunita Rao", "username": "sunitar", "year": "Final Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Amit Joshi", "username": "amitj", "year": "First Year", "department": "Civil",
+    "kts_y1_ext": 3, "kts_y1_int": 2, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Anjali Iyer", "username": "anjalii", "year": "Second Year", "department": "Computer Science",
+    "kts_y1_ext": 1, "kts_y1_int": 1, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Sameer Kumar", "username": "sameerk", "year": "Third Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Pooja Gupta", "username": "poojag", "year": "Final Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Rajesh Patel", "username": "rajeshp", "year": "First Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Sneha Singh", "username": "snehas", "year": "Second Year", "department": "Civil",
+    "kts_y1_ext": 2, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Manish Reddy", "username": "manishr", "year": "Third Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Kiran Verma", "username": "kiranv", "year": "Final Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Sanjay Choudhary", "username": "sanjayc", "year": "First Year", "department": "EXTC",
+    "kts_y1_ext": 4, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Deepika Thakur", "username": "deepikat", "year": "Second Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Naveen Agarwal", "username": "naveena", "year": "Third Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 3, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Geeta Jain", "username": "geetaj", "year": "Final Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Harish Malhotra", "username": "harishm", "year": "First Year", "department": "Mechanical",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Lakshmi Shah", "username": "lakshmis", "year": "Second Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Manoj Desai", "username": "manojd", "year": "Third Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Shilpa Nair", "username": "shilpan", "year": "Final Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Alok Bajaj", "username": "alokb", "year": "First Year", "department": "Computer Science",
+    "kts_y1_ext": 2, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Divya Kapoor", "username": "divyak", "year": "Second Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Pradeep Bhatia", "username": "pradeepb", "year": "Third Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 1, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Swati Iyer", "username": "swatii", "year": "Final Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Umesh Rao", "username": "umeshr", "year": "First Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Varsha Ali", "username": "varshaa", "year": "Second Year", "department": "Computer Science",
+    "kts_y1_ext": 3, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Anil Sethi", "username": "anils", "year": "Third Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 1, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Sarika Khanna", "username": "sarikak", "year": "Final Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Girish Mehta", "username": "girishm", "year": "First Year", "department": "IT",
+    "kts_y1_ext": 1, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Usha Menon", "username": "usham", "year": "Second Year", "department": "Civil",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 2, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Vivek Singhania", "username": "viveks", "year": "Third Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Meena Anand", "username": "meenaa", "year": "Final Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Kishore Chopra", "username": "kishorec", "year": "First Year", "department": "EXTC",
+    "kts_y1_ext": 5, "kts_y1_int": 2, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Rekha Hussain", "username": "rekhah", "year": "Second Year", "department": "IT",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Jay Akhtar", "username": "jaya", "year": "Third Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ravi Kumar", "username": "ravik", "year": "Final Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Bhavana Singh", "username": "bhavanas", "year": "First Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Deepak Patel", "username": "deepakp", "year": "Second Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Hema Sharma", "username": "hemas", "year": "Third Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Leela Verma", "username": "leelav", "year": "Final Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Mohan Gupta", "username": "mohang", "year": "First Year", "department": "Computer Science",
+    "kts_y1_ext": 2, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Nita Reddy", "username": "nitar", "year": "Second Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Prakash Singh", "username": "prakashs", "year": "Third Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Rina Kumar", "username": "rinak", "year": "Final Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Suresh Patel", "username": "sureshp", "year": "First Year", "department": "Civil",
+    "kts_y1_ext": 3, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Tina Mishra", "username": "tinam", "year": "Second Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Vinod Khan", "username": "vinodk", "year": "Third Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 1, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ashok Choudhary", "username": "ashokc", "year": "Final Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Chitra Joshi", "username": "chitraj", "year": "First Year", "department": "IT",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Gopal Mehra", "username": "gopalm", "year": "Second Year", "department": "Civil",
+    "kts_y1_ext": 2, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ethan Walker", "username": "ethanw", "year": "First Year", "department": "Computer Science",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Olivia Bennett", "username": "oliviab", "year": "Second Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 3, "kts_y2_int": 1, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Noah Mitchell", "username": "noahm", "year": "Third Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 2, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Emma Carter", "username": "emmac", "year": "Final Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Liam Brooks", "username": "liamb", "year": "First Year", "department": "Civil",
+    "kts_y1_ext": 3, "kts_y1_int": 2, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Sophia Clarke", "username": "sophiac", "year": "Second Year", "department": "Computer Science",
+    "kts_y1_ext": 1, "kts_y1_int": 1, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Mason Reed", "username": "masonr", "year": "Third Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Ava Foster", "username": "avaf", "year": "Final Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "James Turner", "username": "jamest", "year": "First Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ella Parker", "username": "ellap", "year": "Second Year", "department": "Civil",
+    "kts_y1_ext": 2, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Alexander Hughes", "username": "alexh", "year": "Third Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Grace Morgan", "username": "gracem", "year": "Final Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Daniel Scott", "username": "daniels", "year": "First Year", "department": "EXTC",
+    "kts_y1_ext": 4, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Chloe Adams", "username": "chloea", "year": "Second Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Benjamin Cooper", "username": "benjaminc", "year": "Third Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 3, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Isabella Moore", "username": "isabellam", "year": "Final Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Lucas Bailey", "username": "lucasb", "year": "First Year", "department": "Mechanical",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Mia Edwards", "username": "miae", "year": "Second Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Henry Brooks", "username": "henryb", "year": "Third Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Charlotte Hall", "username": "charlotteh", "year": "Final Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ethan Walker", "username": "ethanw", "year": "First Year", "department": "Computer Science",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Olivia Bennett", "username": "oliviab", "year": "Second Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 3, "kts_y2_int": 1, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Noah Mitchell", "username": "noahm", "year": "Third Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 2, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Emma Carter", "username": "emmac", "year": "Final Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Liam Brooks", "username": "liamb", "year": "First Year", "department": "Civil",
+    "kts_y1_ext": 3, "kts_y1_int": 2, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Sophia Clarke", "username": "sophiac", "year": "Second Year", "department": "Computer Science",
+    "kts_y1_ext": 1, "kts_y1_int": 1, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Mason Reed", "username": "masonr", "year": "Third Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Ava Foster", "username": "avaf", "year": "Final Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "James Turner", "username": "jamest", "year": "First Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ella Parker", "username": "ellap", "year": "Second Year", "department": "Civil",
+    "kts_y1_ext": 2, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Alexander Hughes", "username": "alexh", "year": "Third Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Grace Morgan", "username": "gracem", "year": "Final Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Daniel Scott", "username": "daniels", "year": "First Year", "department": "EXTC",
+    "kts_y1_ext": 4, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Chloe Adams", "username": "chloea", "year": "Second Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Benjamin Cooper", "username": "benjaminc", "year": "Third Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 3, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Isabella Moore", "username": "isabellam", "year": "Final Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Lucas Bailey", "username": "lucasb", "year": "First Year", "department": "Mechanical",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Mia Edwards", "username": "miae", "year": "Second Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Henry Brooks", "username": "henryb", "year": "Third Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Charlotte Hall", "username": "charlotteh", "year": "Final Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Rohan Mehra", "username": "rohanm", "year": "First Year", "department": "Computer Science",
+    "kts_y1_ext": 2, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Priya Singh", "username": "priyas", "year": "Second Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 1, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Arnav Gupta", "username": "arnavg", "year": "Third Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 1, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Mira Patel", "username": "mirap", "year": "Final Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Vivaan Joshi", "username": "vivaanj", "year": "First Year", "department": "Civil",
+    "kts_y1_ext": 3, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Kiara Desai", "username": "kiarad", "year": "Second Year", "department": "Computer Science",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 2, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Dev Shah", "username": "devs", "year": "Third Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 2, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Anika Reddy", "username": "anikar", "year": "Final Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Kabir Sharma", "username": "kabirs", "year": "First Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Shanaya Verma", "username": "shanayav", "year": "Second Year", "department": "Civil",
+    "kts_y1_ext": 4, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Atharv Kumar", "username": "atharvk", "year": "Third Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Riya Mishra", "username": "riyam", "year": "Final Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Sai Prasad", "username": "saip", "year": "First Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Naina Agarwal", "username": "nainaa", "year": "Second Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 3, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Dhruv Jain", "username": "dhruvj", "year": "Third Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Ishani Iyer", "username": "ishanii", "year": "Final Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Reyansh Nair", "username": "reyanshn", "year": "First Year", "department": "Mechanical",
+    "kts_y1_ext": 5, "kts_y1_int": 2, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Myra Kapoor", "username": "myrak", "year": "Second Year", "department": "EXTC",
+    "kts_y1_ext": 2, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Arush Thakur", "username": "arusht", "year": "Third Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 3, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Aadhya Menon", "username": "aadhyam", "year": "Final Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Neel Rao", "username": "neelr", "year": "First Year", "department": "Computer Science",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Saanvi Bajaj", "username": "saanvib", "year": "Second Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Vihaan Yadav", "username": "vihaany", "year": "Third Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 1, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Anvi Singh", "username": "anvis", "year": "Final Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Krish Malhotra", "username": "krishm", "year": "First Year", "department": "Civil",
+    "kts_y1_ext": 2, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Pari Chaudhary", "username": "paric", "year": "Second Year", "department": "Computer Science",
+    "kts_y1_ext": 1, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ishaan Bhatia", "username": "ishaanb", "year": "Third Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 2, "kts_y2_int": 0, "kts_y3_ext": 1, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Diya Singhania", "username": "diyas", "year": "Final Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Shaurya Khan", "username": "shauryak", "year": "First Year", "department": "IT",
+    "kts_y1_ext": 3, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Amaira Sethi", "username": "amairas", "year": "Second Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Zayan Ali", "username": "zayana", "year": "Third Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Aarohi Chopra", "username": "aarohic", "year": "Final Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Arjun Khanna", "username": "arjunk", "year": "First Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Navya Hussain", "username": "navyah", "year": "Second Year", "department": "IT",
+    "kts_y1_ext": 2, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Yuvan Akhtar", "username": "yuvana", "year": "Third Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ananya Kumar", "username": "ananyak", "year": "Final Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Advaith Singh", "username": "advaiths", "year": "First Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ira Patel", "username": "irap", "year": "Second Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ayaan Sharma", "username": "ayaans", "year": "Third Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 2, "kts_y2_int": 1, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Samaira Verma", "username": "samairav", "year": "Final Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Kiaan Gupta", "username": "kiaang", "year": "First Year", "department": "Computer Science",
+    "kts_y1_ext": 4, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Vanya Reddy", "username": "vanyar", "year": "Second Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Aarav Joshi", "username": "aaravj", "year": "Third Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 1, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Sia Desai", "username": "siad", "year": "Final Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ritvik Shah", "username": "ritviks", "year": "First Year", "department": "Civil",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Zara Prasad", "username": "zarap", "year": "Second Year", "department": "Computer Science",
+    "kts_y1_ext": 3, "kts_y1_int": 2, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Vedant Agarwal", "username": "vedanta", "year": "Third Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 1, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Eva Jain", "username": "evaj", "year": "Final Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Yash Iyer", "username": "yashi", "year": "First Year", "department": "IT",
+    "kts_y1_ext": 2, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Aarya Nair", "username": "aaryan", "year": "Second Year", "department": "Civil",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Om Kapoor", "username": "omk", "year": "Third Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 2, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Avni Thakur", "username": "avnit", "year": "Final Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Harsh Menon", "username": "harshm", "year": "First Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Khushi Rao", "username": "khushir", "year": "Second Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Laksh Bajaj", "username": "lakshb", "year": "Third Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Aisha Yadav", "username": "aishay", "year": "Final Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Aryan Malhotra", "username": "aryanm", "year": "First Year", "department": "Mechanical",
+    "kts_y1_ext": 3, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Jiya Chaudhary", "username": "jiyac", "year": "Second Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 2, "kts_y2_int": 1, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Manan Bhatia", "username": "mananb", "year": "Third Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 1, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Nitya Singhania", "username": "nityas", "year": "Final Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Pranav Khan", "username": "pranavk", "year": "First Year", "department": "Computer Science",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Aditi Sethi", "username": "aditis", "year": "Second Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Rudra Ali", "username": "rudraa", "year": "Third Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Angel Chopra", "username": "angelc", "year": "Final Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Samarth Khanna", "username": "samarthk", "year": "First Year", "department": "Civil",
+    "kts_y1_ext": 2, "kts_y1_int": 2, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Mahi Hussain", "username": "mahih", "year": "Second Year", "department": "Computer Science",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Veer Akhtar", "username": "veera", "year": "Third Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Anika Kumar", "username": "anikk", "year": "Final Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Advik Singh", "username": "adviksi", "year": "First Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Kavya Patel", "username": "kavyap", "year": "Second Year", "department": "Civil",
+    "kts_y1_ext": 3, "kts_y1_int": 1, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Rehan Sharma", "username": "rehans", "year": "Third Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 1, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Tara Verma", "username": "tarav", "year": "Final Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Leo Gupta", "username": "leog", "year": "First Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Zoya Reddy", "username": "zoyar", "year": "Second Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 2, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Farhan Joshi", "username": "farhanj", "year": "Third Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 2, "kts_y3_int": 1
+  },
+  {
+    "full_name": "Abeer Desai", "username": "abeerd", "year": "Final Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Sumer Shah", "username": "sumers", "year": "First Year", "department": "Mechanical",
+    "kts_y1_ext": 4, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Nora Prasad", "username": "norap", "year": "Second Year", "department": "EXTC",
+    "kts_y1_ext": 1, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Imran Agarwal", "username": "imrana", "year": "Third Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Alia Jain", "username": "aliaj", "year": "Final Year", "department": "Civil",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Arman Iyer", "username": "armani", "year": "First Year", "department": "Computer Science",
+    "kts_y1_ext": 2, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Keya Nair", "username": "keyan", "year": "Second Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 1, "kts_y2_int": 1, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ronit Kapoor", "username": "ronitk", "year": "Third Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 1, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Misha Thakur", "username": "mishat", "year": "Final Year", "department": "IT",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Viraj Menon", "username": "virajm", "year": "First Year", "department": "Civil",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Tanya Rao", "username": "tanyar", "year": "Second Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Yuvraj Bajaj", "username": "yuvrajb", "year": "Third Year", "department": "Mechanical",
+    "kts_y1_ext": 1, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ishita Yadav", "username": "ishitay", "year": "Final Year", "department": "EXTC",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Ishan Malhotra", "username": "ishanm", "year": "First Year", "department": "IT",
+    "kts_y1_ext": 3, "kts_y1_int": 1, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Rhea Chaudhary", "username": "rheac", "year": "Second Year", "department": "Civil",
+    "kts_y1_ext": 2, "kts_y1_int": 1, "kts_y2_ext": 1, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Jai Bhatia", "username": "jaib", "year": "Third Year", "department": "Computer Science",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 2, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  },
+  {
+    "full_name": "Sara Singhania", "username": "saras", "year": "Final Year", "department": "Mechanical",
+    "kts_y1_ext": 0, "kts_y1_int": 0, "kts_y2_ext": 0, "kts_y2_int": 0, "kts_y3_ext": 0, "kts_y3_int": 0
+  }
+]

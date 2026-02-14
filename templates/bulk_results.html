@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}Bulk Check Results{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="dashboard-header">
+        <h2>Bulk Eligibility Check Results</h2>
+        <div class="header-actions">
+            <p>Review the eligibility status for the students from the uploaded file.</p>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Processed Student Data</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        {% for header in headers %}
+                            <th>{{ header }}</th>
+                        {% endfor %}
+                        <th>Eligibility Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                    <tr>
+                        {% for key, value in result.data.items() %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                        <td class="
+                            {% if 'Not Eligible' in result.status %}
+                                result-ineligible
+                            {% else %}
+                                result-eligible
+                            {% endif %}
+                        ">
+                            <strong>{{ result.status }}</strong>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
