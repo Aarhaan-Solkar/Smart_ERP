@@ -71,6 +71,148 @@
     </div>
 </div>
 
+<!-- ================= MID TERM KT CHECKER ================= -->
+
+<h3 class="section-title">Mid-Term Exam KT Checker</h3>
+
+{% set subjects = [] %}
+
+{% if student_data.department == "Computer Science" %}
+
+    {% if student_data.year == "First Year" %}
+        {% set subjects = [
+            "Engineering Mathematics I",
+            "Engineering Physics",
+            "Basic Electrical Engineering",
+            "Engineering Mechanics",
+            "Engineering Chemistry"
+        ] %}
+    {% elif student_data.year == "Second Year" %}
+        {% set subjects = [
+            "Data Structures",
+            "Computer Organization",
+            "Discrete Mathematics",
+            "OOP",
+            "Digital Logic Design"
+        ] %}
+    {% elif student_data.year == "Third Year" %}
+        {% set subjects = [
+            "Operating Systems",
+            "Database Management Systems",
+            "Computer Networks",
+            "Theory of Computation",
+            "Software Engineering"
+        ] %}
+    {% elif student_data.year == "Final Year" %}
+        {% set subjects = [
+            "Machine Learning",
+            "Cloud Computing",
+            "Cyber Security",
+            "Blockchain Technology",
+            "Project Work"
+        ] %}
+    {% endif %}
+
+{% elif student_data.department == "Mechanical" %}
+
+    {% if student_data.year == "First Year" %}
+        {% set subjects = [
+            "Engineering Mathematics I",
+            "Engineering Physics",
+            "Engineering Graphics",
+            "Basic Mechanical Engineering",
+            "Workshop Practice"
+        ] %}
+    {% elif student_data.year == "Second Year" %}
+        {% set subjects = [
+            "Thermodynamics",
+            "Fluid Mechanics",
+            "Material Science",
+            "Manufacturing Process",
+            "Kinematics of Machines"
+        ] %}
+    {% elif student_data.year == "Third Year" %}
+        {% set subjects = [
+            "Heat Transfer",
+            "Machine Design",
+            "Dynamics of Machinery",
+            "Industrial Engineering",
+            "Mechatronics"
+        ] %}
+    {% elif student_data.year == "Final Year" %}
+        {% set subjects = [
+            "Robotics",
+            "Automobile Engineering",
+            "CAD/CAM",
+            "Refrigeration & Air Conditioning",
+            "Project Work"
+        ] %}
+    {% endif %}
+
+{% elif student_data.department == "Electrical Engineering" %}
+
+    {% if student_data.year == "First Year" %}
+        {% set subjects = [
+            "Engineering Mathematics I",
+            "Engineering Physics",
+            "Basic Electrical Engineering",
+            "Engineering Mechanics",
+            "Engineering Chemistry"
+        ] %}
+    {% elif student_data.year == "Second Year" %}
+        {% set subjects = [
+            "Circuit Theory",
+            "Electrical Machines I",
+            "Signals and Systems",
+            "Electromagnetic Fields",
+            "Control Systems"
+        ] %}
+    {% elif student_data.year == "Third Year" %}
+        {% set subjects = [
+            "Power Systems",
+            "Electrical Machines II",
+            "Power Electronics",
+            "Microcontrollers",
+            "Instrumentation"
+        ] %}
+    {% elif student_data.year == "Final Year" %}
+        {% set subjects = [
+            "Smart Grid",
+            "Renewable Energy Systems",
+            "High Voltage Engineering",
+            "Electrical Drives",
+            "Project Work"
+        ] %}
+    {% endif %}         
+
+{% endif %}
+
+<div class="midterm-section">
+    <table class="marks-table">
+        <thead>
+            <tr>
+                <th>Subject</th>
+                <th>Marks (Out of 20)</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subject in subjects %}
+            <tr>
+                <td>{{ subject }}</td>
+                <td>
+                    <input type="number" min="0" max="20" class="mark-input">
+                </td>
+                <td class="result"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <button onclick="checkKT()" class="check-btn">Check KT Status</button>
+    <p id="ktSummary" class="kt-summary"></p>
+</div>
+
 <!-- Chart.js library -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
@@ -153,5 +295,40 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+
+function checkKT() {
+    const inputs = document.querySelectorAll('.mark-input');
+    const results = document.querySelectorAll('.result');
+    let ktCount = 0;
+
+    inputs.forEach((input, index) => {
+        const marks = parseInt(input.value);
+
+        if (isNaN(marks) || marks < 0 || marks > 20) {
+            results[index].innerHTML = "Invalid";
+            results[index].style.color = "orange";
+        } 
+        else if (marks >= 8) {
+            results[index].innerHTML = "Pass";
+            results[index].style.color = "green";
+        } 
+        else {
+            results[index].innerHTML = "KT";
+            results[index].style.color = "red";
+            ktCount++;
+        }
+    });
+
+    const summary = document.getElementById('ktSummary');
+
+    if (ktCount === 0) {
+        summary.style.color = "green";
+        summary.innerHTML = `Total KTs: 0 You are safe!`;
+    } else {
+        summary.style.color = "red";
+        summary.innerHTML = `Total KTs: ${ktCount} Clear them before finals!`;
+    }
+}
+
 </script>
 {% endblock %}
