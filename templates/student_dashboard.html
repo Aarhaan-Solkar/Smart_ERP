@@ -1,334 +1,352 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Student Portal | ERP</title>
 
-{% block title %}Student Dashboard{% endblock %}
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-{% block content %}
-<div class="student-dashboard-container">
-    <h2 class="dashboard-title">Student Dashboard</h2>
+<style>
 
-    <!-- Student Profile Section -->
-    <div class="profile-section">
-        <img src="https://i.pravatar.cc/150?u={{ student_data.username }}" alt="Profile Picture" class="profile-pic">
-        <div class="profile-details">
-            <h3>{{ student_data.full_name if student_data else 'Student Name' }}</h3>
-            <p>Roll Number: {{ student_data.username if student_data else 'N/A' }}</p>
-            <p>Department: {{ student_data.department if student_data else 'N/A' }}</p>
-            <p>Year: {{ student_data.year if student_data else 'N/A' }}</p>
-        </div>
-    </div>
+/* Page animation */
+body{
+    animation: fadeIn 0.8s ease;
+}
 
-    <!-- Key Statistics Section -->
-    <h3 class="section-title">Key Statistics</h3>
-    <div class="stats-grid">
-        <div class="stat-card">
-            <h4>Attendance Percentage</h4>
-            <p class="stat-value">92%</p>
-        </div>
-        <div class="stat-card">
-            <h4>GPA</h4>
-            <p class="stat-value">8.5</p>
-        </div>
-        <div class="stat-card">
-            <h4>Number of KTs</h4>
-            <p class="stat-value">{{ total_kts }}</p>
-        </div>
-        <div class="stat-card">
-            <h4>Eligibility Status</h4>
-            <p class="stat-value {{ 'eligible' if 'Eligible' in eligibility_status else 'ineligible' }}">
-                {{ eligibility_status }}
-            </p>    
-            {% if eligibility_status == 'Eligible' %}
-                {% set next_year = None %}
-                {% if student_data.year == 'First Year' %}{% set next_year = 'Second Year' %}
-                {% elif student_data.year == 'Second Year' %}{% set next_year = 'Third Year' %}
-                {% elif student_data.year == 'Third Year' %}{% set next_year = 'Final Year' %}
-                {% elif student_data.year == 'Final Year' %}{% set next_year = 'Graduation 🎓' %}{% endif %}
-                {% if next_year %}
-                    <p class="next-year">You are promoted to <strong>{{ next_year }}</strong> 🚀</p>
-                {% endif %}
-            {% else %}
-                <p class="next-year">You cannot proceed to the next year until you clear KTs ❌</p>
-            {% endif %}
-        </div>
-    </div>
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px)}
+    to{opacity:1; transform:translateY(0)}
+}
 
-    <!-- Payment Button -->
-    <div class="payment-section">
-        <a href="https://pages.razorpay.com/pl_FpvQTKKTduggCT/view" class="payment-btn">Pay Fees Now</a>
-    </div>
+/* Card hover animation */
 
-    <!-- Progress Tracking Section -->
-    <h3 class="section-title">Progress Tracking</h3>
-    <div class="progress-grid">
-        <div class="chart-card">
-            <h4>Your Attendance Trend</h4>
-            <canvas id="attendanceChart"></canvas>
-        </div>
-        <div class="chart-card">
-            <h4>GPA Over Time</h4>
-            <canvas id="gpaChart"></canvas>
-        </div>
-    </div>
+.card-hover{
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover{
+    transform: translateY(-5px) scale(1.02);
+    box-shadow:0 15px 30px rgba(0,0,0,0.08);
+}
+
+/* Alert animation */
+
+.alert{
+    animation: slideIn 0.6s ease;
+}
+
+@keyframes slideIn{
+    from{
+        opacity:0;
+        transform:translateX(-20px)
+    }
+    to{
+        opacity:1;
+        transform:translateX(0)
+    }
+}
+
+/* Table hover */
+
+tbody tr:hover{
+    background:#f8fafc;
+    transition:0.2s;
+}
+
+</style>
+</head>
+
+<body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen font-sans">
+
+<header class="bg-white/80 backdrop-blur border-b border-slate-200 px-8 py-4 flex justify-between items-center sticky top-0 z-50">
+
+<div class="flex items-center gap-4">
+
+<div class="bg-gradient-to-r from-blue-500 to-indigo-600 p-3 rounded-xl text-white shadow-md">
+<i class="fas fa-user-graduate text-lg"></i>
 </div>
 
-<!-- ================= MID TERM KT CHECKER ================= -->
+<h1 class="text-xl font-black text-slate-800 tracking-tight">
+Student Dashboard
+</h1>
 
-<h3 class="section-title">Mid-Term Exam KT Checker</h3>
+</div>
 
-{% set subjects = [] %}
+<div class="flex items-center gap-6">
 
-{% if student_data.department == "Computer Science" %}
+<div class="text-right hidden md:block">
+<p class="text-sm font-bold text-slate-800">{{ s.name }}</p>
+<p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{{ s.roll }}</p>
+</div>
 
-    {% if student_data.year == "First Year" %}
-        {% set subjects = [
-            "Engineering Mathematics I",
-            "Engineering Physics",
-            "Basic Electrical Engineering",
-            "Engineering Mechanics",
-            "Engineering Chemistry"
-        ] %}
-    {% elif student_data.year == "Second Year" %}
-        {% set subjects = [
-            "Data Structures",
-            "Computer Organization",
-            "Discrete Mathematics",
-            "OOP",
-            "Digital Logic Design"
-        ] %}
-    {% elif student_data.year == "Third Year" %}
-        {% set subjects = [
-            "Operating Systems",
-            "Database Management Systems",
-            "Computer Networks",
-            "Theory of Computation",
-            "Software Engineering"
-        ] %}
-    {% elif student_data.year == "Final Year" %}
-        {% set subjects = [
-            "Machine Learning",
-            "Cloud Computing",
-            "Cyber Security",
-            "Blockchain Technology",
-            "Project Work"
-        ] %}
-    {% endif %}
+<a href="/logout" class="text-slate-400 hover:text-rose-500 transition text-xl hover:scale-110">
+<i class="fas fa-power-off"></i>
+</a>
 
-{% elif student_data.department == "Mechanical" %}
+</div>
 
-    {% if student_data.year == "First Year" %}
-        {% set subjects = [
-            "Engineering Mathematics I",
-            "Engineering Physics",
-            "Engineering Graphics",
-            "Basic Mechanical Engineering",
-            "Workshop Practice"
-        ] %}
-    {% elif student_data.year == "Second Year" %}
-        {% set subjects = [
-            "Thermodynamics",
-            "Fluid Mechanics",
-            "Material Science",
-            "Manufacturing Process",
-            "Kinematics of Machines"
-        ] %}
-    {% elif student_data.year == "Third Year" %}
-        {% set subjects = [
-            "Heat Transfer",
-            "Machine Design",
-            "Dynamics of Machinery",
-            "Industrial Engineering",
-            "Mechatronics"
-        ] %}
-    {% elif student_data.year == "Final Year" %}
-        {% set subjects = [
-            "Robotics",
-            "Automobile Engineering",
-            "CAD/CAM",
-            "Refrigeration & Air Conditioning",
-            "Project Work"
-        ] %}
-    {% endif %}
+</header>
 
-{% elif student_data.department == "Electrical Engineering" %}
+<main class="max-w-6xl mx-auto p-8">
 
-    {% if student_data.year == "First Year" %}
-        {% set subjects = [
-            "Engineering Mathematics I",
-            "Engineering Physics",
-            "Basic Electrical Engineering",
-            "Engineering Mechanics",
-            "Engineering Chemistry"
-        ] %}
-    {% elif student_data.year == "Second Year" %}
-        {% set subjects = [
-            "Circuit Theory",
-            "Electrical Machines I",
-            "Signals and Systems",
-            "Electromagnetic Fields",
-            "Control Systems"
-        ] %}
-    {% elif student_data.year == "Third Year" %}
-        {% set subjects = [
-            "Power Systems",
-            "Electrical Machines II",
-            "Power Electronics",
-            "Microcontrollers",
-            "Instrumentation"
-        ] %}
-    {% elif student_data.year == "Final Year" %}
-        {% set subjects = [
-            "Smart Grid",
-            "Renewable Energy Systems",
-            "High Voltage Engineering",
-            "Electrical Drives",
-            "Project Work"
-        ] %}
-    {% endif %}         
+<!-- STAT CARDS -->
+
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+
+<div class="bg-white p-6 rounded-3xl border border-slate-100 text-center card-hover">
+<p class="text-[10px] font-black text-slate-400 uppercase mb-1">Current GPA</p>
+<p class="text-3xl font-black text-blue-600">{{ s.gpa }}</p>
+</div>
+
+<div class="bg-white p-6 rounded-3xl border border-slate-100 text-center card-hover">
+<p class="text-[10px] font-black text-slate-400 uppercase mb-1">Attendance</p>
+<p class="text-3xl font-black text-emerald-500">{{ s.attendance }}%</p>
+</div>
+
+<div class="bg-white p-6 rounded-3xl border border-slate-100 text-center card-hover">
+<p class="text-[10px] font-black text-slate-400 uppercase mb-1">Total KT</p>
+<p class="text-3xl font-black text-rose-500">{{ s.total_kt }}</p>
+</div>
+
+<div class="bg-white p-6 rounded-3xl border border-slate-100 text-center card-hover">
+<p class="text-[10px] font-black text-slate-400 uppercase mb-1">Academic Status</p>
+
+<span class="inline-block mt-2 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest
+{{ 'bg-emerald-100 text-emerald-600' if status == 'Excellent' }}
+{{ 'bg-blue-100 text-blue-600' if status == 'Good' }}
+{{ 'bg-rose-100 text-rose-600' if status == 'At Risk' }}">
+
+{{ status }}
+
+</span>
+
+</div>
+
+</div>
+
+
+<!-- CHART + ALERTS -->
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+
+<div class="lg:col-span-2 bg-white p-8 rounded-[2.5rem] border border-slate-100 card-hover">
+
+<h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-8">
+Subject Performance Analysis
+</h3>
+
+<div class="h-64">
+<canvas id="studentSubChart"></canvas>
+</div>
+
+</div>
+
+
+<div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 card-hover">
+
+<h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-6">
+Academic Alerts
+</h3>
+
+<div class="space-y-4">
+
+{% if s.attendance < 75 %}
+
+<div class="bg-rose-50 p-4 rounded-2xl flex items-start gap-4 alert">
+
+<i class="fas fa-exclamation-triangle text-rose-500 mt-1"></i>
+
+<p class="text-xs font-bold text-rose-700 leading-relaxed">
+Your attendance is below 75%. You are at risk of being a defaulter.
+</p>
+
+</div>
 
 {% endif %}
 
-<div class="midterm-section">
-    <table class="marks-table">
-        <thead>
-            <tr>
-                <th>Subject</th>
-                <th>Marks (Out of 20)</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for subject in subjects %}
-            <tr>
-                <td>{{ subject }}</td>
-                <td>
-                    <input type="number" min="0" max="20" class="mark-input">
-                </td>
-                <td class="result"></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 
-    <button onclick="checkKT()" class="check-btn">Check KT Status</button>
-    <p id="ktSummary" class="kt-summary"></p>
+{% if internal_kts %}
+
+<div class="bg-amber-50 p-4 rounded-2xl flex items-start gap-4 alert">
+
+<i class="fas fa-book-open text-amber-500 mt-1"></i>
+
+<p class="text-xs font-bold text-amber-700 leading-relaxed">
+You have {{ internal_kts|length }} subject(s) flagged for Internal KT.
+</p>
+
 </div>
 
-<!-- Chart.js library -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endif %}
+
+
+{% if not internal_kts and s.attendance >= 75 %}
+
+<div class="bg-emerald-50 p-4 rounded-2xl flex items-start gap-4 alert">
+
+<i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+
+<p class="text-xs font-bold text-emerald-700 leading-relaxed">
+Everything looks great! Keep maintaining your performance.
+</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- STUDENT INFO -->
+
+<div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 mb-10 card-hover">
+
+<h3 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-6">
+Student Information
+</h3>
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+
+<div class="flex justify-between border-b border-slate-50 pb-2">
+<span class="text-slate-400">Full Name</span>
+<span class="font-bold text-slate-700">{{ s.name }}</span>
+</div>
+
+<div class="flex justify-between border-b border-slate-50 pb-2">
+<span class="text-slate-400">Roll Number</span>
+<span class="font-bold text-slate-700">{{ s.roll }}</span>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- MARKS TABLE -->
+
+<div class="bg-white rounded-[2.5rem] border border-slate-100 overflow-hidden card-hover">
+
+<div class="px-8 py-5 bg-slate-50 border-b border-slate-100">
+
+<h3 class="text-xs font-black text-slate-800 uppercase tracking-widest">
+Mark Sheet & Internal KT Status
+</h3>
+
+</div>
+
+<table class="w-full text-left">
+
+<thead class="bg-white text-slate-400 text-[10px] uppercase font-black">
+
+<tr>
+<th class="px-8 py-4">Subject Code</th>
+<th class="px-8 py-4">Marks (Out of 20)</th>
+<th class="px-8 py-4 text-center">Status</th>
+</tr>
+
+</thead>
+
+<tbody class="divide-y divide-slate-50">
+
+{% for sub, mark in s.marks.items() %}
+
+<tr class="{{ 'bg-rose-50/20' if mark < 7 }}">
+
+<td class="px-8 py-4 font-bold text-slate-700">{{ sub }}</td>
+
+<td class="px-8 py-4 font-black {{ 'text-rose-600' if mark < 7 else 'text-slate-600' }}">
+{{ mark }}
+</td>
+
+<td class="px-8 py-4 text-center">
+
+{% if mark < 7 %}
+
+<span class="text-[9px] font-black bg-rose-600 text-white px-3 py-1 rounded-full uppercase">
+Internal KT
+</span>
+
+{% else %}
+
+<span class="text-[9px] font-black bg-emerald-100 text-emerald-600 px-3 py-1 rounded-full uppercase">
+Cleared
+</span>
+
+{% endif %}
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+</div>
+
+</main>
+
+
 <script>
-let attendanceChart;
 
-// Fetch attendance.json and filter only the logged-in student
-fetch('attendance.json')
-  .then(response => response.json())
-  .then(data => {
-    const fullName = "{{ student_data.full_name }}";  // Jinja injects logged-in student's name
-    const student = data.find(s => s.Name === fullName);
+new Chart(document.getElementById('studentSubChart'), {
 
-    if (student) {
-        updateAttendanceChart(student);
-    } else {
-        console.error("No matching student found in JSON for:", fullName);
-    }
-  });
+type: 'bar',
 
+data: {
 
-// Function to draw chart for that student only
-function updateAttendanceChart(student) {
-    const labels = ['Day1', 'Day2', 'Day3', 'Day4', 'Day5'];
-    const attendanceValues = [
-        student.Day1, student.Day2, student.Day3, student.Day4, student.Day5
-    ];
+labels: ['BC','BDA','NLP','ML','MIS'],
 
-    const ctx = document.getElementById('attendanceChart').getContext('2d');
+datasets: [{
 
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: student.Name + ' Attendance',
-                data: attendanceValues,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: true,
-                tension: 0.3
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 1,
-                    ticks: { stepSize: 1 }
-                }
-            }
-        }
-    });
+label:'My Marks',
+
+data: [{{ s.marks.BC }},{{ s.marks.BDA }},{{ s.marks.NLP }},{{ s.marks.ML }},{{ s.marks.MIS }}],
+
+backgroundColor: 'rgba(59,130,246,0.8)',
+
+borderRadius:8
+
+}]
+
+},
+
+options:{
+
+responsive:true,
+
+maintainAspectRatio:false,
+
+animation:{
+duration:1500
+},
+
+scales:{
+y:{
+beginAtZero:true,
+max:20
+}
+},
+
+plugins:{
+legend:{
+display:false
+}
 }
 
-// GPA Chart (from backend-provided data)
-document.addEventListener('DOMContentLoaded', function () {
-    const gpaData = JSON.parse('{{ gpa_data|safe }}');
-    const ctxGPA = document.getElementById('gpaChart').getContext('2d');
-
-    new Chart(ctxGPA, {
-        type: 'line',
-        data: {
-            labels: gpaData.labels,
-            datasets: [{
-                label: 'GPA',
-                data: gpaData.data,
-                fill: true,
-                backgroundColor: 'rgba(74, 105, 189, 0.1)',
-                borderColor: 'rgba(74, 105, 189, 1)',
-                tension: 0.4,
-                borderWidth: 3
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: { y: { display: false }, x: { grid: { display: false } } },
-            plugins: { legend: { display: false } }
-        }
-    });
-});
-
-function checkKT() {
-    const inputs = document.querySelectorAll('.mark-input');
-    const results = document.querySelectorAll('.result');
-    let ktCount = 0;
-
-    inputs.forEach((input, index) => {
-        const marks = parseInt(input.value);
-
-        if (isNaN(marks) || marks < 0 || marks > 20) {
-            results[index].innerHTML = "Invalid";
-            results[index].style.color = "orange";
-        } 
-        else if (marks >= 8) {
-            results[index].innerHTML = "Pass";
-            results[index].style.color = "green";
-        } 
-        else {
-            results[index].innerHTML = "KT";
-            results[index].style.color = "red";
-            ktCount++;
-        }
-    });
-
-    const summary = document.getElementById('ktSummary');
-
-    if (ktCount === 0) {
-        summary.style.color = "green";
-        summary.innerHTML = `Total KTs: 0 You are safe!`;
-    } else {
-        summary.style.color = "red";
-        summary.innerHTML = `Total KTs: ${ktCount} Clear them before finals!`;
-    }
 }
+
+})
 
 </script>
-{% endblock %}
+
+</body>
+</html>
