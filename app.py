@@ -1,11 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-import smtplib
-from email.mime.text import MIMEText
-from flask import jsonify
-import traceback
+import os
+import json
+from flask import Flask, render_template, request, redirect, url_for, session, flash
+from werkzeug.security import generate_password_hash, check_password_hash
 
+# --- App Initialization ---
 app = Flask(__name__)
 app.secret_key = 'erp_system_secret_2026'
 
@@ -63,95 +61,32 @@ def admin_dashboard():
     if session.get('role') != 'admin':
         return redirect(url_for('login'))
     
-    try:
-        sheet = get_sheet()
-        all_students = sheet.get_all_records()
-        display_students = all_students[:52]
+    overall_eligibility = {'Eligible': 0, 'Not Eligible': 0}
+    department_distribution = {}
+    department_eligibility = {}
 
-        # --- Calculate Quick Stats ---
-        total_count = len(all_students)
-        
-        # 1. Average GPA
-        gpas = [float(s['Current GPA']) for s in all_students if str(s['Current GPA']).replace('.','',1).isdigit()]
-        avg_gpa = round(sum(gpas)/len(gpas), 2) if gpas else 0
-        
-        # 2. Class Attendance Average
-        atts = [float(s['Attendance Average']) for s in all_students if str(s['Attendance Average']).replace('.','',1).isdigit()]
-        avg_att = round(sum(atts)/len(atts), 1) if atts else 0
-        
-        # 3. Defaulter Count (Attendance < 75%)
-        defaulters = len([s for s in all_students if float(s['Attendance Average']) < 75])
+    for student in students:
+        status = check_eligibility(student)
+        is_eligible = 'Not Eligible' not in status
+        overall_eligibility['Eligible' if is_eligible else 'Not Eligible'] += 1
+        dept = student.get('department', 'Unknown')
+        department_distribution[dept] = department_distribution.get(dept, 0) + 1
+        if dept not in department_eligibility:
+            department_eligibility[dept] = {'Eligible': 0, 'Not Eligible': 0}
+        department_eligibility[dept]['Eligible' if is_eligible else 'Not Eligible'] += 1
 
-        # --- Analytics Charts (Same as before) ---
-        subjects = ['BC', 'BDA', 'NLP', 'ML', 'MIS']
-        sub_avgs = [round(sum(float(s[sub]) for s in all_students if str(s[sub]).isdigit())/total_count, 2) for sub in subjects]
+    search_query = request.args.get('search', '').lower()
+    search_results = []
+    if search_query:
+        filtered_students = [s for s in students if search_query in s['full_name'].lower()]
+        search_results = [{'student': s, 'status': check_eligibility(s)} for s in filtered_students]
 
-        ranges = {"<60%": 0, "60-75%": 0, "75-90%": 0, "90%+": 0}
-        for s in all_students:
-            val = float(s['Attendance Average'])
-            if val < 60: ranges["<60%"] += 1
-            elif val < 75: ranges["60-75%"] += 1
-            elif val < 90: ranges["75-90%"] += 1
-            else: ranges["90%+"] += 1
-
-        return render_template('admin_dashboard.html', 
-                               students=display_students,
-                               total_students=total_count,
-                               avg_gpa=avg_gpa,
-                               avg_att=avg_att,
-                               defaulters=defaulters,
-                               att_labels=list(ranges.keys()),
-                               att_values=list(ranges.values()),
-                               sub_labels=subjects,
-                               sub_data=sub_avgs)
-    except Exception as e:
-        print("FULL ERROR:", traceback.format_exc())  # shows in terminal
-        return f"<pre>{traceback.format_exc()}</pre>"
-
-@app.route('/send-defaulter-email', methods=['POST'])
-def send_defaulter_email():
-    if session.get('role') != 'admin':
-        return jsonify({"message": "Unauthorized"}), 403
-
-    data = request.get_json()
-    student_email = data.get('email')
-    parent_email = data.get('parent_email')
-    name = data.get('name')
-
-    sender_email = "solkaraarhaan@gmail.com"
-    sender_password = "bkph wqdy mdzi rsfp"
-
-    subject = "⚠️ Defaulter Notice - Attendance Shortage"
-    body = f"""
-    Dear {name} and Parent,
-
-    This is to inform you that {name} has been marked as a DEFAULTER due to attendance below 75%.
-
-    📌 Immediate action is required:
-    Please contact the Class Coordinator and complete the necessary formalities.
-
-    This may affect academic eligibility if ignored.
-
-    Regards,  
-    Prof. Sayali Karmode  
-    """
-
-    msg = MIMEText(body)
-    msg['Subject'] = subject
-    msg['From'] = sender_email
-    msg['To'] = f"{student_email}, {parent_email}"
-
-    try:
-        server = smtplib.SMTP('smtp.gmail.com', 587)
-        server.starttls()
-        server.login(sender_email, sender_password)
-        server.send_message(msg)
-        server.quit()
-
-        return jsonify({"message": f"Email sent to {name}"})
-
-    except Exception as e:
-        return jsonify({"message": f"Error: {str(e)}"})
+    return render_template(
+        'admin_dashboard.html', search_query=search_query, search_results=search_results,
+        overall_eligibility_labels=list(overall_eligibility.keys()), overall_eligibility_data=list(overall_eligibility.values()),
+        department_dist_labels=list(department_distribution.keys()), department_dist_data=list(department_distribution.values()),
+        department_eligibility_data=department_eligibility
+    )
 
 @app.route('/faculty/dashboard')
 def faculty_dashboard():
