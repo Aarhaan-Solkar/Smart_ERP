@@ -1,23 +1,95 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERP System | Secure Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-slate-100 flex items-center justify-center min-h-screen font-sans">
 
-{% block title %}Login - Smart ERP{% endblock %}
+    <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl w-full max-w-md border-t-8 border-blue-600">
+        <div class="text-center mb-10">
+            <div class="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <i class="fas fa-university text-white text-2xl"></i>
+            </div>
+            <h1 class="text-3xl font-bold text-slate-800 tracking-tight">ERP Portal</h1>
+            <p class="text-slate-500 mt-2">Sign in to access your dashboard</p>
+        </div>
 
-{% block content %}
-<div class="login-container">
-    <div class="card">
-        <h2>Login to Your Account</h2>
-        <p>Enter your credentials to access your dashboard.</p>
-        <form action="{{ url_for('login') }}" method="post" class="login-form">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <div class="mb-6 p-4 rounded-lg flex items-center {% if category == 'danger' %}bg-red-50 text-red-700 border border-red-100{% else %}bg-green-50 text-green-700 border border-green-100{% endif %} text-sm">
+                <i class="fas {% if category == 'danger' %}fa-exclamation-circle{% else %}fa-check-circle{% endif %} mr-3"></i>
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <form action="/login" method="POST" class="space-y-5">
+            <div>
+                <label class="block text-slate-700 text-sm font-bold mb-2" for="id_or_email">
+                    Email or Roll Number
+                </label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                        <i class="fas fa-user"></i>
+                    </span>
+                    <input class="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all bg-slate-50 focus:bg-white" 
+                           type="text" name="id_or_email" id="id_or_email" 
+                           placeholder="admin@erp.com or Roll No" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+
+            <div>
+                <label class="block text-slate-700 text-sm font-bold mb-2" for="password">
+                    Password
+                </label>
+                <div class="relative">
+                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                        <i class="fas fa-lock"></i>
+                    </span>
+                    <input class="w-full pl-10 pr-4 py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all bg-slate-50 focus:bg-white" 
+                           type="password" name="password" id="password" 
+                           placeholder="••••••••" required>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+
+            <div class="flex items-center justify-between">
+                <label class="flex items-center text-sm text-slate-600 cursor-pointer">
+                    <input type="checkbox" class="mr-2 rounded border-gray-300 text-blue-600 focus:ring-blue-500"> 
+                    Remember me
+                </label>
+                <a href="#" class="text-sm text-blue-600 font-semibold hover:text-blue-800">Forgot?</a>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-100 transform transition active:scale-[0.98]">
+                Authorize & Sign In
+            </button>
         </form>
+
+        <div class="mt-10 pt-8 border-t border-slate-100">
+            <p class="text-center text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Login Types</p>
+            <div class="grid grid-cols-3 gap-2 text-center text-[10px] font-medium text-slate-500">
+                <div class="p-2 bg-slate-50 rounded-lg border border-slate-100">
+                    <i class="fas fa-user-shield block mb-1 text-blue-500"></i> Admin
+                </div>
+                <div class="p-2 bg-slate-50 rounded-lg border border-slate-100">
+                    <i class="fas fa-chalkboard-teacher block mb-1 text-blue-500"></i> Faculty
+                </div>
+                <div class="p-2 bg-slate-50 rounded-lg border border-slate-100">
+                    <i class="fas fa-user-graduate block mb-1 text-blue-500"></i> Student
+                </div>
+            </div>
+        </div>
+        
+        <p class="mt-8 text-center text-xs text-slate-400">
+            &copy; 2026 ERP Systems. Secure Environment.
+        </p>
     </div>
-</div>
-{% endblock %}
+
+</body>
+</html>

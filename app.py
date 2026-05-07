@@ -1,216 +1,243 @@
-import os
-import json
-from flask import Flask, render_template, request, redirect, url_for, session, flash
-from werkzeug.security import generate_password_hash, check_password_hash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+import smtplib
+from email.mime.text import MIMEText
+from flask import jsonify
+import traceback
 
-# --- App Initialization ---
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = 'erp_system_secret_2026'
 
-# --- Data Loading ---
-# --- Data Loading ---
-def load_data():
-    """Loads user, student, and faculty data."""
-    try:
-        with open('students.json', 'r') as f:
-            students_data = json.load(f)
-    except FileNotFoundError:
-        students_data = []
+# --- Google Sheets Configuration ---
+def get_sheet():
+    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+    creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+    client = gspread.authorize(creds)
+    # Ensure this name matches your Google Sheet title exactly
+    return client.open("Student_Database").sheet1
 
-    # Admin User
-    users_data = {
-        "admin": {"password": generate_password_hash("adminpassword"), "role": "admin"}
-    }
+# --- Staff Credentials ---
+STAFF_USERS = {
+    "admin@erp.com": {"password": "admin123", "role": "admin"},
+    "faculty@erp.com": {"password": "faculty456", "role": "faculty"}
+}
 
-    # Faculty Users (NEW)
-    faculty_users = {
-        "faculty_cs": {"password": generate_password_hash("cs_pass"), "role": "faculty", "department": "Computer Science"},
-        "faculty_mech": {"password": generate_password_hash("mech_pass"), "role": "faculty", "department": "Mechanical"},
-        "faculty_extc": {"password": generate_password_hash("extc_pass"), "role": "faculty", "department": "EXTC"},
-        "faculty_it": {"password": generate_password_hash("it_pass"), "role": "faculty", "department": "IT"},
-        "faculty_civil": {"password": generate_password_hash("civil_pass"), "role": "faculty", "department": "Civil"},
-    }
-    users_data.update(faculty_users) # Add faculty users to the main users dictionary
+@app.route('/')
+def index():
+    return redirect(url_for('login'))
 
-    # Student Users
-    for student in students_data:
-        users_data[student['username']] = { "password": generate_password_hash("password"), "role": "student" }
-    
-    return users_data, students_data
-
-users, students = load_data()
-print(f"Loaded {len(students)} student records from students.json.")
-
-# --- Eligibility Logic ---
-def check_eligibility(student):
-    year_str = student.get('year', '').lower()
-    y1_ext, y1_int = student.get('kts_y1_ext', 0), student.get('kts_y1_int', 0)
-    y2_ext, y2_int = student.get('kts_y2_ext', 0), student.get('kts_y2_int', 0)
-    y3_ext, y3_int = student.get('kts_y3_ext', 0), student.get('kts_y3_int', 0)
-
-    if 'first' in year_str:
-        if y1_ext > 5 or y1_int > 3 or (y1_ext + y1_int) > 8: return "Not Eligible"
-        return "Eligible"
-    elif 'second' in year_str:
-        if y1_ext > 0 or y1_int > 0: return "Not Eligible"
-        if y2_ext > 5 or y2_int > 3 or (y2_ext + y2_int) > 8: return "Not Eligible"
-        return "Eligible"
-    elif 'third' in year_str:
-        if y1_ext > 0 or y1_int > 0 or y2_ext > 0 or y2_int > 0: return "Not Eligible"
-        if y3_ext > 5 or y3_int > 3 or (y3_ext + y3_int) > 8: return "Not Eligible"
-        return "Eligible"
-    elif 'final' in year_str or 'fourth' in year_str:
-         if y1_ext > 0 or y1_int > 0 or y2_ext > 0 or y2_int > 0 or y3_ext > 0 or y3_int > 0: return "Not Eligible"
-         return "Eligible"
-    return "Status Unknown"
-
-# --- Routes ---
-
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    if 'username' in session:
-        # MODIFIED: Redirect based on role already in session
-        if session.get('role') == 'admin':
-            return redirect(url_for('admin_dashboard'))
-        elif session.get('role') == 'faculty':
-            return redirect(url_for('faculty_dashboard'))
-        else: # Student
-            return redirect(url_for('student_dashboard'))
-            
     if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        user = users.get(username)
+        user_input = request.form.get('id_or_email')
+        password = request.form.get('password')
 
-        if user and check_password_hash(user['password'], password):
-            session['username'] = username
-            session['role'] = user['role']
+        # 1. Check Staff
+        if user_input in STAFF_USERS and STAFF_USERS[user_input]['password'] == password:
+            session['user'] = user_input
+            session['role'] = STAFF_USERS[user_input]['role']
+            return redirect(url_for(f"{session['role']}_dashboard"))
+
+        # 2. Check Student (Google Sheets)
+        try:
+            sheet = get_sheet()
+            # Find Roll No in Column A
+            cell = sheet.find(str(user_input))
+            if cell:
+                row_data = sheet.row_values(cell.row)
+                # Password is in Column D (Index 3)
+                if len(row_data) >= 4 and str(row_data[3]) == str(password):
+                    session['user'] = user_input
+                    session['role'] = 'student'
+                    return redirect(url_for('student_dashboard'))
+        except Exception as e:
+            print(f"Login Error: {e}")
+
+        flash('Invalid Credentials. Please try again.', 'danger')
             
-            # --- NEW LOGIC FOR FACULTY ---
-            if user['role'] == 'admin':
-                return redirect(url_for('admin_dashboard'))
-            elif user['role'] == 'faculty':
-                session['department'] = user['department'] # Store department in session
-                return redirect(url_for('faculty_dashboard'))
-            else: # Student
-                return redirect(url_for('student_dashboard'))
-            # --- END OF NEW LOGIC ---
-
-        flash('Invalid username or password.', 'danger')
     return render_template('login.html')
 
-@app.route('/admin_dashboard')
+@app.route('/admin/dashboard')
 def admin_dashboard():
-    if 'username' not in session or session.get('role') != 'admin': return redirect(url_for('login'))
-    
-    overall_eligibility = {'Eligible': 0, 'Not Eligible': 0}
-    department_distribution = {}
-    department_eligibility = {}
-
-    for student in students:
-        status = check_eligibility(student)
-        is_eligible = 'Not Eligible' not in status
-        overall_eligibility['Eligible' if is_eligible else 'Not Eligible'] += 1
-        dept = student.get('department', 'Unknown')
-        department_distribution[dept] = department_distribution.get(dept, 0) + 1
-        if dept not in department_eligibility:
-            department_eligibility[dept] = {'Eligible': 0, 'Not Eligible': 0}
-        department_eligibility[dept]['Eligible' if is_eligible else 'Not Eligible'] += 1
-
-    search_query = request.args.get('search', '').lower()
-    search_results = []
-    if search_query:
-        filtered_students = [s for s in students if search_query in s['full_name'].lower()]
-        search_results = [{'student': s, 'status': check_eligibility(s)} for s in filtered_students]
-
-    return render_template(
-        'admin_dashboard.html', search_query=search_query, search_results=search_results,
-        overall_eligibility_labels=list(overall_eligibility.keys()), overall_eligibility_data=list(overall_eligibility.values()),
-        department_dist_labels=list(department_distribution.keys()), department_dist_data=list(department_distribution.values()),
-        department_eligibility_data=department_eligibility
-    )
-
-@app.route('/faculty_dashboard')
-def faculty_dashboard():
-    # Security check: Ensure user is a logged-in faculty member
-    if 'username' not in session or session.get('role') != 'faculty':
+    if session.get('role') != 'admin':
         return redirect(url_for('login'))
     
-    # Get the faculty's department from the session
-    faculty_department = session.get('department', 'Unknown')
+    try:
+        sheet = get_sheet()
+        all_students = sheet.get_all_records()
+        display_students = all_students[:52]
+
+        # --- Calculate Quick Stats ---
+        total_count = len(all_students)
+        
+        # 1. Average GPA
+        gpas = [float(s['Current GPA']) for s in all_students if str(s['Current GPA']).replace('.','',1).isdigit()]
+        avg_gpa = round(sum(gpas)/len(gpas), 2) if gpas else 0
+        
+        # 2. Class Attendance Average
+        atts = [float(s['Attendance Average']) for s in all_students if str(s['Attendance Average']).replace('.','',1).isdigit()]
+        avg_att = round(sum(atts)/len(atts), 1) if atts else 0
+        
+        # 3. Defaulter Count (Attendance < 75%)
+        defaulters = len([s for s in all_students if float(s['Attendance Average']) < 75])
+
+        # --- Analytics Charts (Same as before) ---
+        subjects = ['BC', 'BDA', 'NLP', 'ML', 'MIS']
+        sub_avgs = [round(sum(float(s[sub]) for s in all_students if str(s[sub]).isdigit())/total_count, 2) for sub in subjects]
+
+        ranges = {"<60%": 0, "60-75%": 0, "75-90%": 0, "90%+": 0}
+        for s in all_students:
+            val = float(s['Attendance Average'])
+            if val < 60: ranges["<60%"] += 1
+            elif val < 75: ranges["60-75%"] += 1
+            elif val < 90: ranges["75-90%"] += 1
+            else: ranges["90%+"] += 1
+
+        return render_template('admin_dashboard.html', 
+                               students=display_students,
+                               total_students=total_count,
+                               avg_gpa=avg_gpa,
+                               avg_att=avg_att,
+                               defaulters=defaulters,
+                               att_labels=list(ranges.keys()),
+                               att_values=list(ranges.values()),
+                               sub_labels=subjects,
+                               sub_data=sub_avgs)
+    except Exception as e:
+        print("FULL ERROR:", traceback.format_exc())  # shows in terminal
+        return f"<pre>{traceback.format_exc()}</pre>"
+
+@app.route('/send-defaulter-email', methods=['POST'])
+def send_defaulter_email():
+    if session.get('role') != 'admin':
+        return jsonify({"message": "Unauthorized"}), 403
+
+    data = request.get_json()
+    student_email = data.get('email')
+    parent_email = data.get('parent_email')
+    name = data.get('name')
+
+    sender_email = "solkaraarhaan@gmail.com"
+    sender_password = "bkph wqdy mdzi rsfp"
+
+    subject = "⚠️ Defaulter Notice - Attendance Shortage"
+    body = f"""
+    Dear {name} and Parent,
+
+    This is to inform you that {name} has been marked as a DEFAULTER due to attendance below 75%.
+
+    📌 Immediate action is required:
+    Please contact the Class Coordinator and complete the necessary formalities.
+
+    This may affect academic eligibility if ignored.
+
+    Regards,  
+    Prof. Sayali Karmode  
+    """
+
+    msg = MIMEText(body)
+    msg['Subject'] = subject
+    msg['From'] = sender_email
+    msg['To'] = f"{student_email}, {parent_email}"
+
+    try:
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(sender_email, sender_password)
+        server.send_message(msg)
+        server.quit()
+
+        return jsonify({"message": f"Email sent to {name}"})
+
+    except Exception as e:
+        return jsonify({"message": f"Error: {str(e)}"})
+
+@app.route('/faculty/dashboard')
+def faculty_dashboard():
+    if session.get('role') != 'faculty':
+        return redirect(url_for('login'))
     
-    # Filter students to only include those from the faculty's department
-    department_students = [s for s in students if s.get('department') == faculty_department]
+    try:
+        sheet = get_sheet()
+        all_students = sheet.get_all_records()
 
-    # --- Calculate statistics ONLY for the filtered students ---
-    eligibility_counts = {'Eligible': 0, 'Not Eligible': 0}
-    year_distribution = {}
+        # --- Quick Stats ---
+        total_students = len(all_students)
+        gpas = [float(s['Current GPA']) for s in all_students]
+        avg_gpa = round(sum(gpas)/total_students, 2)
+        avg_att = round(sum(float(s['Attendance Average']) for s in all_students)/total_students, 1)
+        kt_students_count = len([s for s in all_students if int(s['Number of KT']) > 0])
 
-    for student in department_students:
-        status = check_eligibility(student)
-        is_eligible = 'Not Eligible' not in status
-        
-        eligibility_counts['Eligible' if is_eligible else 'Not Eligible'] += 1
-        
-        year = student.get('year', 'Unknown')
-        year_distribution[year] = year_distribution.get(year, 0) + 1
+        # --- Students Requiring Attention (Logic: Attendance < 75% OR GPA < 5 OR KT > 0) ---
+        attention_list = [s for s in all_students if float(s['Attendance Average']) < 75 or float(s['Current GPA']) < 5 or int(s['Number of KT']) > 0]
 
-    # --- Handle server-side search (as a fallback) ---
-    search_query = request.args.get('search', '').lower()
-    search_results = []
-    if search_query:
-        # This part will now primarily be for non-JS users or direct links
-        filtered_students_for_search = [s for s in department_students if search_query in s['full_name'].lower()]
-        search_results = [{'student': s, 'status': check_eligibility(s)} for s in filtered_students_for_search]
+        # --- Chart Data ---
+        subjects = ['BC', 'BDA', 'NLP', 'ML', 'MIS']
+        sub_avgs = [round(sum(float(s[sub]) for s in all_students)/total_students, 2) for sub in subjects]
 
-    return render_template(
-        'faculty_dashboard.html',
-        department=faculty_department,
-        # MODIFIED: Pass the full list of students to the template
-        all_department_students=[{'student': s, 'status': check_eligibility(s)} for s in department_students],
-        search_query=search_query,
-        search_results=search_results, # We can keep this for fallback
-        eligibility_labels=list(eligibility_counts.keys()),
-        eligibility_data=list(eligibility_counts.values()),
-        year_dist_labels=list(year_distribution.keys()),
-        year_dist_data=list(year_distribution.values()),
-        total_students=len(department_students),
-        eligible_count=eligibility_counts.get('Eligible', 0),
-        not_eligible_count=eligibility_counts.get('Not Eligible', 0)
-    )
+        return render_template('faculty_dashboard.html', 
+                               students=all_students[:15], # Showing 15 for Faculty
+                               attention_students=attention_list[:5], # Top 5 at-risk
+                               total=total_students,
+                               avg_gpa=avg_gpa,
+                               avg_att=avg_att,
+                               kt_count=kt_students_count,
+                               sub_labels=subjects,
+                               sub_data=sub_avgs)
+    except Exception as e:
+        return f"Faculty Portal Error: {e}"
 
-@app.route('/student_dashboard')
+@app.route('/student/dashboard')
 def student_dashboard():
-    if 'username' not in session or session.get('role') != 'student': return redirect(url_for('login'))
+    if session.get('role') != 'student':
+        return redirect(url_for('login'))
     
-    student_data = next((s for s in students if s['username'] == session['username']), None)
-    
-    if student_data:
-        eligibility_status = check_eligibility(student_data)
-        total_kts = student_data.get('kts_y1_ext', 0) + student_data.get('kts_y1_int', 0) + \
-                    student_data.get('kts_y2_ext', 0) + student_data.get('kts_y2_int', 0) + \
-                    student_data.get('kts_y3_ext', 0) + student_data.get('kts_y3_int', 0)
-    else:
-        eligibility_status = "N/A"
-        total_kts = "N/A"
+    try:
+        sheet = get_sheet()
+        roll_no = session.get('user')
+        # Find student row
+        cell = sheet.find(str(roll_no))
+        student_data = sheet.row_values(cell.row)
+        
+        # Mapping based on your Google Sheet structure
+        # Column A=Roll(0), B=Name(1), C=Email(2), D=Pass(3), E=Att(4), F=BC(5), G=BDA(6), H=NLP(7), I=ML(8), J=MIS(9), K=GPA(10), L=KT(11)
+        student = {
+            "name": student_data[1],
+            "roll": student_data[0],
+            "attendance": float(student_data[4]),
+            "gpa": float(student_data[10]),
+            "total_kt": int(student_data[11]),
+            "marks": {
+                "BC": int(student_data[5]),
+                "BDA": int(student_data[6]),
+                "NLP": int(student_data[7]),
+                "ML": int(student_data[8]),
+                "MIS": int(student_data[9])
+            }
+        }
 
-    # Dummy data for charts
-    attendance_data = {'labels': ["Jan", "Feb", "Mar", "Apr", "May", "Jun"], 'data': [92, 88, 95, 85, 91, 89]}
-    gpa_data = {'labels': ["Sem 1", "Sem 2", "Sem 3", "Sem 4", "Sem 5", "Sem 6"], 'data': [7.8, 8.2, 8.0, 8.5, 8.3, 8.8]}
+        # Calculate Academic Status
+        if student['gpa'] >= 8 and student['attendance'] >= 80:
+            status = "Excellent"
+        elif student['gpa'] >= 5 and student['attendance'] >= 75:
+            status = "Good"
+        else:
+            status = "At Risk"
 
-    return render_template(
-        'student_dashboard.html', 
-        student_data=student_data,
-        eligibility_status=eligibility_status,
-        total_kts=total_kts,
-        attendance_data=json.dumps(attendance_data),
-        gpa_data=json.dumps(gpa_data)
-    )
+        # Identify Internal KTs (Marks < 7)
+        internal_kts = {sub: mark for sub, mark in student['marks'].items() if mark < 7}
+
+        return render_template('student_dashboard.html', 
+                               s=student, 
+                               status=status, 
+                               internal_kts=internal_kts)
+    except Exception as e:
+        return f"Student Portal Error: {e}"
 
 @app.route('/logout')
 def logout():
     session.clear()
-    flash('You have been logged out.', 'info')
     return redirect(url_for('login'))
 
 if __name__ == '__main__':

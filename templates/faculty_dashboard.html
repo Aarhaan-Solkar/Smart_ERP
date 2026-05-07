@@ -2,206 +2,131 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faculty Dashboard | ERP System</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <style>
-        :root {
-            --primary-color: #0056b3;
-            --secondary-color: #198754;
-            --accent-color: #f39c12;
-            --bg-color: #f4f6f9;
-            --card-bg: #ffffff;
-            --text-dark: #212529;
-            --border-radius: 12px;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            font-family: "Poppins", sans-serif;
-            color: var(--text-dark);
-        }
-
-        /* Navbar */
-        .navbar {
-            background: var(--primary-color) !important;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-        }
-
-        .navbar-brand {
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        /* Dashboard header */
-        .dashboard-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .dashboard-header h1 {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        /* Card stats */
-        .stat-card {
-            border: none;
-            border-radius: var(--border-radius);
-            background-color: var(--card-bg);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: all 0.3s ease-in-out;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-        }
-
-        .stat-card .card-title {
-            font-size: 1rem;
-            color: #6c757d;
-        }
-
-        .stat-card .card-text {
-            font-size: 2rem;
-            font-weight: 600;
-        }
-
-        /* Charts */
-        .chart-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 45vh;
-    width: 100%;
-    background-color: var(--card-bg);
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    margin: 0 auto; /* ensures it’s centered in column */
-}
-
-
-        /* Table */
-        .table-container {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            overflow: hidden;
-            margin-top: 2rem;
-        }
-
-        table thead {
-            background-color: var(--primary-color);
-            color: #fff;
-        }
-
-        table tbody tr:hover {
-            background-color: #f8f9fa;
-        }
-
-        /* Search input */
-        .form-control {
-            border-radius: var(--border-radius);
-            box-shadow: none;
-            transition: all 0.2s ease-in-out;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(0, 86, 179, 0.25);
-        }
-    </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <a class="navbar-brand ml-3" href="#">Faculty ERP Portal</a>
-        <div class="collapse navbar-collapse justify-content-end">
-            <ul class="navbar-nav mr-3">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+<body class="bg-slate-50 flex h-screen overflow-hidden">
 
-    <div class="container mt-5 mb-5">
-        <div class="dashboard-header">
-            <h1>{{ department }} Department Dashboard</h1>
-            <p class="lead">Faculty overview and student eligibility insights</p>
+    <div class="w-64 bg-slate-900 text-white flex flex-col p-6 shrink-0">
+        <h1 class="text-xl font-black text-blue-400 mb-10 tracking-tighter">FACULTY PORTAL</h1>
+        <nav class="space-y-3 flex-grow">
+            <a href="#" class="block p-3 rounded-xl bg-blue-600 font-bold text-sm"><i class="fas fa-th-large mr-3"></i> Overview</a>
+            <a href="/logout" class="block p-3 rounded-xl text-red-400 hover:bg-red-500/10 font-bold text-sm mt-auto transition">
+                <i class="fas fa-sign-out-alt mr-3"></i> Logout
+            </a>
+        </nav>
+    </div>
+
+    <div class="flex-1 overflow-auto p-8">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-3xl font-black text-slate-800 tracking-tight">Academic Performance Tracker</h2>
+            <span class="text-xs font-bold text-slate-400 bg-white px-4 py-2 rounded-full border border-slate-200">Session: 2025-26</span>
         </div>
 
-        <div class="row text-center mb-5">
-            <div class="col-md-4 mb-3">
-                <div class="card stat-card border-primary">
-                    <div class="card-body">
-                        <h5 class="card-title">Total Students</h5>
-                        <p class="card-text text-primary">{{ total_students }}</p>
-                    </div>
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+            <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm">
+                <p class="text-[10px] font-black text-slate-400 uppercase">Total Students</p>
+                <p class="text-2xl font-black text-slate-800">{{ total }}</p>
             </div>
-            <div class="col-md-4 mb-3">
-                <div class="card stat-card border-success">
-                    <div class="card-body">
-                        <h5 class="card-title">Eligible Students</h5>
-                        <p class="card-text text-success">{{ eligible_count }}</p>
-                    </div>
-                </div>
+            <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm border-l-4 border-l-emerald-500">
+                <p class="text-[10px] font-black text-slate-400 uppercase">Avg GPA</p>
+                <p class="text-2xl font-black text-emerald-600">{{ avg_gpa }}</p>
             </div>
-            <div class="col-md-4 mb-3">
-                <div class="card stat-card border-danger">
-                    <div class="card-body">
-                        <h5 class="card-title">Not Eligible Students</h5>
-                        <p class="card-text text-danger">{{ not_eligible_count }}</p>
-                    </div>
-                </div>
+            <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm border-l-4 border-l-rose-500">
+                <p class="text-[10px] font-black text-slate-400 uppercase">KT Students</p>
+                <p class="text-2xl font-black text-rose-600">{{ kt_count }}</p>
+            </div>
+            <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm border-l-4 border-l-blue-500">
+                <p class="text-[10px] font-black text-slate-400 uppercase">Avg Attendance</p>
+                <p class="text-2xl font-black text-blue-600">{{ avg_att }}%</p>
             </div>
         </div>
 
-        <!-- Charts -->
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <h4 class="text-center mb-3">Eligibility Status</h4>
-                <div class="chart-container">
-                    <canvas id="eligibilityChart"></canvas>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <h4 class="text-center mb-3">Student Distribution by Year</h4>
-                <div class="chart-container">
-                    <canvas id="yearDistChart"></canvas>
-                </div>
-            </div>
-        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
 
-        <!-- Search -->
-        <hr class="my-5">
-        <h3 class="mb-3">Search Students</h3>
-        <input type="text" id="searchInput" class="form-control mb-4" placeholder="Type to search by name...">
+    <div class="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">
+        <h3 class="text-xs font-bold text-slate-400 uppercase mb-3 tracking-wider">
+            GPA Distribution
+        </h3>
+        <canvas id="gpaChart" class="max-h-80"></canvas>
+    </div>
 
-        <!-- Student Table -->
-        <div class="table-container">
-            <table class="table table-hover mb-0">
-                <thead>
+    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+        <h3 class="text-xs font-bold text-slate-400 uppercase mb-3 tracking-wider">
+            Subject Proficiency
+        </h3>
+        <canvas id="subChart" class="max-h-80"></canvas>
+    </div>
+
+</div>
+
+        <div class="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden mb-10">
+            <div class="px-8 py-5 border-b border-slate-50 flex justify-between bg-slate-50/30">
+                <h3 class="font-bold text-slate-800">Student Performance Data</h3>
+            </div>
+            <table class="w-full text-left text-sm">
+                <thead class="text-slate-400 text-[10px] uppercase font-black">
                     <tr>
-                        <th>Full Name</th>
-                        <th>Username</th>
-                        <th>Year</th>
-                        <th>Eligibility Status</th>
+                        <th class="px-6 py-4">Roll</th>
+                        <th class="px-6 py-4">Name</th>
+                        <th class="px-6 py-4">Att %</th>
+                        <th class="px-6 py-4">BC</th><th class="px-6 py-4">BDA</th><th class="px-6 py-4">NLP</th>
+                        <th class="px-6 py-4">ML</th><th class="px-6 py-4">MIS</th>
+                        <th class="px-6 py-4">GPA</th><th class="px-6 py-4">KT</th>
                     </tr>
                 </thead>
-                <tbody id="studentTableBody">
-                    {% for result in all_department_students %}
+                <tbody class="divide-y divide-slate-50 font-medium text-slate-600">
+                    {% for s in students %}
+                    <tr class="hover:bg-slate-50 transition">
+                        <td class="px-6 py-4 font-bold text-blue-600">{{ s['Roll No'] }}</td>
+                        <td class="px-6 py-4 font-bold">{{ s['Name'] }}</td>
+                        <td class="px-6 py-4">
+                            <span class="{% if s['Attendance Average']|int < 75 %}text-rose-500{% elif s['Attendance Average']|int < 85 %}text-yellow-600{% else %}text-emerald-500{% endif %}">
+                                {{ s['Attendance Average'] }}%
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">{{ s['BC'] }}</td>
+                        <td class="px-6 py-4">{{ s['BDA'] }}</td>
+                        <td class="px-6 py-4">{{ s['NLP'] }}</td>
+                        <td class="px-6 py-4">{{ s['ML'] }}</td>
+                        <td class="px-6 py-4">{{ s['MIS'] }}</td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 rounded-lg {% if s['Current GPA']|float < 6 %}bg-rose-50 text-rose-600{% else %}bg-emerald-50 text-emerald-600{% endif %} font-black">
+                                {{ s['Current GPA'] }}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 font-black {% if s['Number of KT']|int > 0 %}text-rose-600{% endif %}">{{ s['Number of KT'] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bg-white rounded-[2.5rem] shadow-lg border-2 border-rose-100 overflow-hidden">
+            <div class="px-8 py-5 bg-rose-50 border-b border-rose-100 flex items-center">
+                <i class="fas fa-exclamation-circle text-rose-600 mr-3"></i>
+                <h3 class="font-black text-rose-800 uppercase text-xs tracking-widest">Students Requiring Immediate Attention</h3>
+            </div>
+            <table class="w-full text-left text-sm">
+                <thead class="text-rose-400 text-[10px] uppercase font-black">
                     <tr>
-                        <td class="student-name">{{ result.student.full_name }}</td>
-                        <td>{{ result.student.username }}</td>
-                        <td>{{ result.student.year }}</td>
-                        <td>{{ result.status }}</td>
+                        <th class="px-8 py-4">Roll</th>
+                        <th class="px-8 py-4">Name</th>
+                        <th class="px-8 py-4">GPA</th>
+                        <th class="px-8 py-4">Attendance</th>
+                        <th class="px-8 py-4">KT</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-rose-50">
+                    {% for s in attention_students %}
+                    <tr class="bg-rose-50/30">
+                        <td class="px-8 py-4 font-bold text-rose-700">{{ s['Roll No'] }}</td>
+                        <td class="px-8 py-4 font-bold text-slate-800">{{ s['Name'] }}</td>
+                        <td class="px-8 py-4 text-rose-600 font-black">{{ s['Current GPA'] }}</td>
+                        <td class="px-8 py-4 text-rose-600 font-black">{{ s['Attendance Average'] }}%</td>
+                        <td class="px-8 py-4"><span class="bg-rose-600 text-white px-2 py-1 rounded text-xs">{{ s['Number of KT'] }} KT</span></td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -210,63 +135,44 @@
     </div>
 
     <script>
-        // ---- Chart.js Config ----
-        const eligibilityCtx = document.getElementById('eligibilityChart').getContext('2d');
-        const yearDistCtx = document.getElementById('yearDistChart').getContext('2d');
+{% set high = students|selectattr('Current GPA', 'ge', 8)|list|length %}
+{% set mid = students|selectattr('Current GPA', 'ge', 6)|list|length - high %}
+{% set low = students|length - (high + mid) %}
 
-        new Chart(eligibilityCtx, {
-            type: 'doughnut',
-            data: {
-                labels: {{ eligibility_labels|tojson }},
-                datasets: [{
-                    label: 'Eligibility',
-                    data: {{ eligibility_data|tojson }},
-                    backgroundColor: ['#3B82F6', '#F59E0B'],
-                }]
-            },
-            options: {
-                plugins: {
-                    legend: { position: 'bottom' }
-                }
-                
-            }
-        });
+new Chart(document.getElementById('gpaChart'), {
+    type: 'doughnut',
+    data: {
+        labels: ['Good (8-10)', 'Average (6-8)', 'Critical (<6)'],
+        datasets: [{
+            data: [{{ high }}, {{ mid }}, {{ low }}],
+            backgroundColor: ['#10b981','#f59e0b','#f43f5e']
+        }]
+    },
+    options: {
+        maintainAspectRatio: true,
+        cutout: '65%',
+        plugins: {
+            legend: { position: 'bottom' }
+        }
+    }
+});
 
-        new Chart(yearDistCtx, {
-            type: 'bar',
-            data: {
-                labels: {{ year_dist_labels|tojson }},
-                datasets: [{
-                    label: 'Students',
-                    data: {{ year_dist_data|tojson }},
-                    backgroundColor: ['#1e90ff'],
-                    borderRadius: 6
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: { precision: 0 }
-                    }
-                },
-                plugins: {
-                    legend: { display: true }
-                }
-            }
-        });
-
-        // ---- Search Functionality ----
-        const searchInput = document.getElementById('searchInput');
-        const tableRows = document.querySelectorAll('#studentTableBody tr');
-
-        searchInput.addEventListener('keyup', () => {
-            const filter = searchInput.value.toLowerCase();
-            tableRows.forEach(row => {
-                const name = row.querySelector('.student-name').textContent.toLowerCase();
-                row.style.display = name.includes(filter) ? '' : 'none';
-            });
-        });
-    </script>
+new Chart(document.getElementById('subChart'), {
+    type: 'radar',
+    data: {
+        labels: {{ sub_labels|tojson }},
+        datasets: [{
+            label: 'Class Avg',
+            data: {{ sub_data|tojson }},
+            borderColor: '#3b82f6',
+            backgroundColor: 'rgba(59,130,246,0.2)',
+            pointBackgroundColor: '#3b82f6'
+        }]
+    },
+    options:{
+        maintainAspectRatio:true
+    }
+});
+</script>
 </body>
 </html>
